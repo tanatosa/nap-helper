@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>НАП Помощник – Декларация по чл. 50 от ЗДДФЛ</title>
+<meta name="description" content="Настолно приложение за Windows за Декларацията по чл. 50 от ЗДДФЛ: импорт от инвестиционни посредници (IBKR, Revolut, eToro, Iuvo) и управление на декларациите. Не подава нищо – всичко е локално.">
+<meta property="og:title" content="НАП Помощник – Декларация по чл. 50 от ЗДДФЛ">
+<meta property="og:description" content="Импорт от инвестиционни посредници и управление на декларациите по чл. 50 от ЗДДФЛ. Локално, без подаване.">
+<meta property="og:image" content="icon.png">
+<link rel="icon" href="favicon.ico">
+<style>
+:root {
+  --bg: #f4f6f9; --panel: #ffffff; --line: #d8dee8; --text: #1d2733; --muted: #5c6b80;
+  --accent: #1f5fae; --accent-text: #ffffff; --navy: #2c4165; --sel: #e4eefb; --warn: #8a5300; --warn-bg: #fff4dc;
+}
+:root:not([data-theme="light"]) { color-scheme: light dark; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15191f; --panel: #1e242c; --line: #333c48; --text: #e4e9f0; --muted: #9aa8bb;
+    --accent: #5a9cf0; --accent-text: #0d1117; --navy: #0f1724; --sel: #263548; --warn: #f0b85a; --warn-bg: #3a2f17;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15191f; --panel: #1e242c; --line: #333c48; --text: #e4e9f0; --muted: #9aa8bb;
+  --accent: #5a9cf0; --accent-text: #0d1117; --navy: #0f1724; --sel: #263548; --warn: #f0b85a; --warn-bg: #3a2f17;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 "Segoe UI", system-ui, -apple-system, sans-serif; }
+a { color: var(--accent); }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+header.hero { background: linear-gradient(135deg, #2c4165, #4f73a8); color: #fff; padding: 56px 0 64px; }
+header.hero .wrap { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; }
+header.hero img { width: 128px; height: 128px; flex: none; filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .35)); }
+header.hero h1 { margin: 0 0 8px; font-size: clamp(28px, 5vw, 42px); line-height: 1.15; }
+header.hero p { margin: 0 0 20px; max-width: 640px; font-size: 18px; opacity: .95; }
+.btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn { display: inline-block; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; border: 1px solid rgba(255, 255, 255, .6); color: #fff; }
+.btn.primary { background: #fff; color: #2c4165; border-color: #fff; }
+.btn:hover { background: rgba(255, 255, 255, .16); }
+.btn.primary:hover { background: #e9eefb; }
+
+main section { padding: 40px 0 8px; }
+h2 { margin: 0 0 6px; font-size: 26px; }
+.lead { color: var(--muted); margin: 0 0 22px; max-width: 760px; }
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
+.card h3 { margin: 0 0 6px; font-size: 18px; }
+.card p, .card ul { margin: 0; color: var(--muted); }
+.card ul { padding-left: 20px; }
+.card .n { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--sel); color: var(--accent); font-weight: 700; margin-bottom: 8px; }
+
+figure { margin: 0; }
+figure img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+figcaption { margin-top: 8px; color: var(--muted); font-size: 14px; }
+.shots { display: grid; gap: 28px; grid-template-columns: 1fr; }
+.shots figure img { cursor: zoom-in; }
+.shots figcaption { font-size: 15px; }
+#zoom { position: fixed; inset: 0; z-index: 10; background: rgba(8, 12, 20, .9); overflow: auto; display: none; cursor: zoom-out; padding: 16px; }
+#zoom.open { display: block; }
+#zoom img { display: block; margin: 0 auto; max-width: none; width: min(1700px, 220vw); height: auto; background: #fff; border-radius: 6px; }
+#zoom p { position: sticky; left: 0; top: 0; margin: 0 0 10px; color: #fff; text-align: center; font-size: 14px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+.note { background: var(--warn-bg); color: var(--warn); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin-top: 24px; }
+code { background: var(--sel); padding: 1px 6px; border-radius: 5px; font-size: .92em; }
+pre { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; overflow-x: auto; }
+pre code { background: none; padding: 0; }
+
+footer { margin-top: 48px; padding: 24px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+@media (max-width: 560px) { header.hero { padding: 36px 0 40px; } header.hero img { width: 88px; height: 88px; } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <img src="icon.png" alt="Иконка на НАП Помощник">
+    <div>
+      <h1>НАП Помощник</h1>
+      <p>Приложение за Windows за <strong>Декларацията по чл. 50 от ЗДДФЛ</strong>: импорт от инвестиционни посредници и управление на декларациите – локално, без нищо да се подава.</p>
+      <div class="btns">
+        <a class="btn primary" id="repo" href="https://github.com/tanatosa/nap-helper">Хранилище в GitHub</a>
+        <a class="btn" href="#kak-raboti">Как работи</a>
+        <a class="btn" href="#start">Стартиране</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="fokus">
+    <h2>Три неща, добре</h2>
+    <p class="lead">Приложението е за един формуляр – годишната данъчна декларация на физическо лице – и за работата около нея.</p>
+    <div class="grid">
+      <div class="card"><div class="n">1</div><h3>Декларация по чл. 50 от ЗДДФЛ</h3>
+        <p>Основният формуляр и приложенията към него: 5, 6, 8, 13 и т.н. Разчита се независимо от годината, а оригиналният HTML винаги се пази.</p></div>
+      <div class="card"><div class="n">2</div><h3>Импорт от посредници</h3>
+        <p>Извлечения от Interactive Brokers, Revolut, eToro и Iuvo попълват черновата: дивиденти, лихви, притежавани акции и продажби. Всеки ред показва източника си.</p></div>
+      <div class="card"><div class="n">3</div><h3>Управление на декларациите</h3>
+        <p>Вход в портала на НАП, изтегляне на всичко подадено, зареждане на черновата от портала и локален архив по години.</p></div>
+    </div>
+  </section>
+
+  <section id="izgledi">
+    <h2>Два изгледа</h2>
+    <p class="lead">„Като в НАП“ показва декларацията и черновата така, както ги рисува порталът. „Опростен“ ги показва като таблици, удобни за редактиране.</p>
+    <div class="shots">
+      <figure><img src="img/archive.png" alt="Подадена декларация в изглед „Като в НАП“" loading="lazy"><figcaption>Подадена декларация в изглед „Като в НАП“ – както я рисува порталът (синтетични данни).</figcaption></figure>
+      <figure><img src="img/exchanges.png" alt="Раздел „Борси“" loading="lazy"><figcaption>Раздел „Борси“: кои продажби са облагаеми и защо.</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="import">
+    <h2>Импорт от извлечения: Приложения 6 и 8</h2>
+    <p class="lead">Добавяте файловете от посредниците и приложенията на черновата се попълват. Всеки ред и всяка сума показват от кой файл идват, а отчетът казва какво е попълнено, какво не и какво да проверите.</p>
+    <div class="shots">
+      <figure><img src="img/import.png" alt="Панел за импорт на извлечения" loading="lazy"><figcaption>Импортът: няколко файла наведнъж, видът се разпознава сам. Дивидентите и акциите към 31.12 имат настройки.</figcaption></figure>
+      <figure><img src="img/report.png" alt="Отчет от импорта" loading="lazy"><figcaption>Отчетът от импорта: какво е попълнено в черновата, какво не е и какво е за проверка.</figcaption></figure>
+      <figure><img src="img/app8-shares.png" alt="Приложение 8, Част I: акции към 31 декември" loading="lazy"><figcaption>Приложение 8, Част I: притежаваните акции към 31 декември, по един ред за позиция, с дата на последната покупка и цена в лева.</figcaption></figure>
+      <figure><img src="img/app8-dividends.png" alt="Приложение 8, Част III: дивиденти" loading="lazy"><figcaption>Приложение 8, Част III: дивидентите с държава, код 8141, метод за избягване на двойното облагане и дължим данък.</figcaption></figure>
+      <figure><img src="img/app6.png" alt="Приложение 6: лихви с код 603" loading="lazy"><figcaption>Приложение 6: лихвите с код 603; сумата показва източника си (IBKR) и стойността от предходната година.</figcaption></figure>
+    </div>
+    <p class="lead" style="margin-top:20px">Данните на снимките са синтетични. Щракнете върху снимка, за да я видите в пълен размер.</p>
+  </section>
+
+  <section id="kak-raboti">
+    <h2>Как работи</h2>
+    <p class="lead">Истинският портал се показва във вграден браузър, а приложението чете през същата сесия.</p>
+    <div class="grid four">
+      <div class="card"><h3>Вход</h3><p>ПИК, КЕП и е-автентикация работят както в обикновен браузър. Паролата се пази криптирана с Windows DPAPI и не стига до интерфейса.</p></div>
+      <div class="card"><h3>Чернова от НАП</h3><p>Бутонът „Зареди чернова от НАП“ взема черновата, която порталът пази, и я рисува със стиловете на самия портал – етикетите и кодовете съвпадат с живата форма.</p></div>
+      <div class="card"><h3>Импорт и закон</h3><p>Продажбите се разпределят между Приложение 5 и Приложение 13 според борсата на изпълнение. Сумите се превръщат с курса на ЕЦБ за деня.</p></div>
+      <div class="card"><h3>Само за четене</h3><p>Приложението няма път в кода, който подава декларация, а заявките, различни от GET, към портала се прекъсват по подразбиране.</p></div>
+    </div>
+    <div class="note"><strong>Неофициален инструмент.</strong> Не е свързан с НАП и не е данъчна консултация. Проверявайте всяка стойност преди подаване – подаването винаги се прави на ръка в портала.</div>
+  </section>
+
+  <section id="start">
+    <h2>Стартиране</h2>
+    <p class="lead">От изходния код (Node 24 и Windows):</p>
+<pre><code>npm install
+node node_modules/electron/install.js
+npm start</code></pre>
+    <p class="lead">Преносима версия: <code>npm run dist</code> създава <code>dist\NAP Helper &lt;версия&gt;.exe</code>. Тестовете (<code>npm test</code>) работят върху синтетични данни.</p>
+  </section>
+
+  <section id="licenz">
+    <h2>Лиценз</h2>
+    <p class="lead">MIT – всеки може да копира, променя и разпространява кода. Софтуерът се предоставя „както е“, без гаранция и без отговорност на автора за каквито и да е вреди от ползването му.</p>
+  </section>
+
+  <section id="dannite">
+    <h2>Лични данни</h2>
+    <p class="lead">Всичко се пази на вашия компютър. В хранилището има само синтетични данни; личните документи и извлечения не се качват никъде.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">НАП Помощник · Декларация по чл. 50 от ЗДДФЛ · <a id="repo2" href="https://github.com/tanatosa/nap-helper">GitHub</a></div>
+</footer>
+
+<div id="zoom" role="dialog" aria-label="Снимка в пълен размер"><p>Щракнете за затваряне</p><img alt=""></div>
+<script>
+// click a screenshot to see it large
+(function () {
+  var box = document.getElementById('zoom'), big = box.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var img = e.target.closest('.shots img');
+    if (img) { big.src = img.src; big.alt = img.alt; box.classList.add('open'); return; }
+    if (box.classList.contains('open')) box.classList.remove('open');
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') box.classList.remove('open'); });
+})();
+</script>
+</body>
+</html>

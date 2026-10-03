@@ -1,0 +1,14 @@
+# dependencies and build output
+node_modules/
+dist/
+
+# personal data: hand-saved portal pages and PDFs used as test fixtures
+samples/
+
+# local settings, logs, editor and OS files
+.claude/settings.local.json
+*.log
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

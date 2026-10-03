@@ -1,0 +1,41 @@
+{
+  "name": "nap-declarations",
+  "productName": "NAP Helper",
+  "version": "0.3.0",
+  "description": "Windows desktop app for the Bulgarian annual tax declaration under Art. 50 of the Personal Income Tax Act (Декларация по чл. 50 от ЗДДФЛ): import of statements from investment intermediaries and management of the declarations (download, draft, view, archive) through the NRA (НАП) portal.",
+  "main": "src/main.js",
+  "private": true,
+  "license": "MIT",
+  "homepage": "https://tanatosa.github.io/nap-helper/",
+  "repository": { "type": "git", "url": "git+https://github.com/tanatosa/nap-helper.git" },
+  "bugs": { "url": "https://github.com/tanatosa/nap-helper/issues" },
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/parser.test.js test/import.test.js test/portaldraft.test.js test/xslt.test.js test/napview.test.js test/legacy.test.js",
+    "dist": "electron-builder --win portable"
+  },
+  "build": {
+    "appId": "bg.local.nap-declarations",
+    "files": [
+      "src/**",
+      "ui/**",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "node_modules/pdfjs-dist/**"
+    ],
+    "win": {
+      "target": "portable",
+      "icon": "build/icon.ico",
+      "artifactName": "NAP Helper ${version}.${ext}"
+    }
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "pdfjs-dist": "^4.10.38"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.0"
+  }
+}

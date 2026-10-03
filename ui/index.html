@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; frame-src file:">
+  <title>НАП – Декларация по чл. 50 от ЗДДФЛ · импорт от инвестиционни посредници · управление на декларации</title>
+  <link rel="icon" href="icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav id="tabs">
+      <button data-tab="archive" class="active">Декларации</button>
+      <button data-tab="portal">Портал на НАП</button>
+      <button data-tab="drafts">Чернови</button>
+      <button data-tab="exchanges">Борси</button>
+      <button data-tab="settings">Настройки</button>
+    </nav>
+    <span id="status"></span>
+    <button id="sync" class="primary" title="Изтегля всички подадени декларации, PDF файлове и резултати">Изтегли от портала</button>
+  </header>
+  <div id="banners"></div>
+
+  <main>
+    <section id="tab-archive" class="tab active">
+      <aside id="list"></aside>
+      <article id="detail"><p class="empty">Изберете декларация отляво или натиснете „Изтегли от портала“.</p></article>
+    </section>
+
+    <section id="tab-portal" class="tab">
+      <div class="toolbar">
+        <button data-nav="home">Начало</button>
+        <button data-nav="back">Назад</button>
+        <button data-nav="reload">Презареди</button>
+        <button data-nav="listing">Подадени декларации</button>
+        <span id="portal-url"></span>
+        <span id="ro-badge" class="badge"></span>
+      </div>
+      <div id="portal-host"></div>
+    </section>
+
+    <section id="tab-drafts" class="tab">
+      <aside id="draft-list"></aside>
+      <button id="draft-toggle" class="edge" title="Скрий списъка с чернови">‹</button>
+      <article id="draft-detail"><p class="empty">Черновите се създават от подадена декларация (бутон „Нова чернова“) и се пазят само на този компютър.</p></article>
+    </section>
+
+    <section id="tab-exchanges" class="tab">
+      <article id="exchanges"></article>
+    </section>
+
+    <section id="tab-settings" class="tab">
+      <article id="settings"></article>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+Statement,Header,Field Name,Field Value
+Statement,Data,BrokerName,Synthetic Broker
+Statement,Data,Title,Activity Statement
+Statement,Data,Period,"January 1, 2024 - December 31, 2024"
+Account Information,Header,Field Name,Field Value
+Account Information,Data,Name,Ivan Ivanov
+Account Information,Data,Base Currency,EUR
+Open Positions,Header,DataDiscriminator,Asset Category,Currency,Symbol,Quantity,Mult,Cost Price,Cost Basis,Close Price,Value,Unrealized P/L,Code
+Open Positions,Data,Summary,Stocks,EUR,AAAd,10,1,50.1,501,55,550,49,
+Open Positions,Data,Summary,Stocks,EUR,ETF1,300,1,10.1,3030,11,3300,270,
+Open Positions,Total,,Stocks,EUR,,,,,3531,,3850,319,
+Open Positions,Data,Summary,Stocks,USD,UUU,30,1,20.2,606,25,750,144,
+Open Positions,Total,,Stocks,USD,,,,,606,,750,144,
+Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,C. Price,Proceeds,Comm/Fee,Basis,Realized P/L,MTM P/L,Code
+Trades,Data,Order,Stocks,EUR,ETF1,"2024-02-01, 09:00:00",100,10,10,-1000,-5,1005,0,0,O
+Trades,Data,Order,Stocks,EUR,ETF1,"2024-06-03, 09:00:00",200,10.1,10.1,-2020,-5,2025,0,0,O
+Trades,SubTotal,,Stocks,EUR,ETF1,,300,,,-3020,-10,3030,0,0,
+Trades,Data,Order,Stocks,EUR,ETF2,"2024-05-02, 10:00:00","-1,000",5,5,5000,-5,-4000,995,0,C
+Trades,Data,Order,Stocks,USD,UUU,"2024-03-01, 15:30:00",30,20,20,-600,-6,606,0,0,O
+Trades,Data,Order,Stocks,USD,USX,"2024-05-02, 15:30:00",-10,110,110,1100,-1,-1300,-201,0,C
+Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,C. Price,Proceeds,Comm/Fee,Basis,Realized P/L,MTM P/L,Code
+Trades,Data,Order,Equity and Index Options,USD,XYZ 18OCT24 85 P,"2024-03-01, 11:00:00",1,2,2,-200,-1,201,0,0,O
+Trades,Data,Order,Equity and Index Options,USD,XYZ 18OCT24 85 P,"2024-06-03, 16:20:00",-1,0,0,0,0,-201,-201,0,C;Ep
+Trades,Header,DataDiscriminator,Asset Category,Currency,Symbol,Date/Time,Quantity,T. Price,,Proceeds,Comm in EUR,,,MTM in EUR,Code
+Trades,Data,Order,Forex,USD,EUR.USD,"2024-03-01, 15:30:00",606,1.08,,-654.48,0,,,0,AFx
+Corporate Actions,Header,Asset Category,Currency,Report Date,Date/Time,Description,Quantity,Proceeds,Value,Realized P/L,Code
+Corporate Actions,Data,Bonds,EUR,2024-05-02,"2024-05-01, 20:25:00","(DE0000000009)  Bond Maturity FOR EUR 1.00 PER BOND",-1000,1000,0,10,
+Corporate Actions,Data,Total,,,,,,1000,0,10,
+Dividends,Header,Currency,Date,Description,Amount
+Dividends,Data,EUR,2024-04-30,AAA(DE0000000001) Cash Dividend EUR 3.00 per Share (Ordinary Dividend),30.01
+Dividends,Data,EUR,2024-04-30,AAA(DE0000000001) Cash Dividend EUR 3.00 per Share - Reversal (Ordinary Dividend),-30.01
+Dividends,Data,EUR,2024-04-30,AAA(DE0000000001) Cash Dividend EUR 3.00 per Share (Ordinary Dividend),30
+Dividends,Data,Total,,,30
+Dividends,Data,USD,2024-06-03,UUU(US0000000002) Cash Dividend USD 0.25 per Share (Ordinary Dividend),7.5
+Dividends,Data,USD,2024-06-03,UUU(US0000000002) Payment in Lieu of Dividend (Ordinary Dividend),2.5
+Dividends,Data,Total,,,10
+Dividends,Data,Total in EUR,,,9.09
+Dividends,Data,Total Dividends in EUR,,,39.09
+Withholding Tax,Header,Currency,Date,Description,Amount,Code
+Withholding Tax,Data,EUR,2024-02-05,Withholding @ 5% on Credit Interest for Jan-2024,-1,
+Withholding Tax,Data,EUR,2024-04-30,AAA(DE0000000001) Cash Dividend EUR 3.00 per Share - DE Tax,-7.91,
+Withholding Tax,Data,EUR,2024-04-30,AAA(DE0000000001) Cash Dividend EUR 3.00 per Share - DE Tax,7.91,
+Withholding Tax,Data,EUR,2024-04-30,AAA(DE0000000001) Cash Dividend EUR 3.00 per Share - DE Tax,-7.9,
+Withholding Tax,Data,Total,,,-8.9,
+Interest,Header,Currency,Date,Description,Amount
+Interest,Data,EUR,2024-02-05,EUR Credit Interest for Jan-2024,20
+Interest,Data,Total,,,20
+Interest,Data,USD,2024-06-03,Bond Coupon Payment (T 1 01/01/25 - Synthetic Treasury),11
+Interest,Data,Total,,,11
+Financial Instrument Information,Header,Asset Category,Symbol,Description,Conid,Security ID,Underlying,Listing Exch,Multiplier,Type,Code
+Financial Instrument Information,Data,Stocks,AAAd,AAA SE,1,DE0000000001,AAA,IBIS,1,COMMON,
+Financial Instrument Information,Data,Stocks,ETF1,SYNTHETIC ETF ONE,2,IE0000000003,ETF1,AEB,1,ETF,
+Financial Instrument Information,Data,Stocks,ETF2,SYNTHETIC ETF TWO,3,IE0000000004,ETF2,IBIS2,1,ETF,
+Financial Instrument Information,Data,Stocks,UUU,UUU INC,4,US0000000002,UUU,NYSE,1,COMMON,
+Financial Instrument Information,Data,Stocks,USX,USX INC,5,US0000000005,USX,NYSE,1,COMMON,
+Financial Instrument Information,Header,Asset Category,Symbol,Description,Conid,Underlying,Listing Exch,Multiplier,Expiry,Delivery Month,Type,Strike,Code
+Financial Instrument Information,Data,Equity and Index Options,XYZ   241018P00085000,XYZ 18OCT24 85 P,6,XYZ,CBOE,100,2024-10-18,2024-10,P,85,
